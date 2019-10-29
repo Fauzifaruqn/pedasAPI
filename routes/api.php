@@ -18,6 +18,10 @@ Route::group(['prefix' => 'v1'], function () {
         'except' => ['create','edit']
     ]);
 
+    Route::resource('materi', 'MateriController',[
+        'except' => ['create','edit']
+    ]);
+
     Route::resource('keluhan/registration', 'RegisterController', [
         'only' => ['store','destroy']
     ]);
