@@ -26,11 +26,17 @@ Route::group(['prefix' => 'v1'], function () {
         'only' => ['store','destroy']
     ]);
 
-    Route::post('/user/register', [
-        'uses' => 'AuthController@store'
+    Route::post('/login', [
+        'uses' => 'AuthController@login'
     ]);
 
-    Route::post('/user/signin',[
-        'uses' => 'AuthController@signin'
+    Route::post('/register',[
+        'uses' => 'AuthController@register'
     ]);
+
+        // Route::post('login', 'Api\AuthController@login');
+        // Route::post('register', 'Api\AuthController@register');
+        Route::group(['middleware' => 'auth:api'], function(){
+            Route::post('getUser', 'AuthController@getUser');
+        });
 });
